@@ -3,16 +3,13 @@ package com.rohit.org;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 
-
-class ItemTest {
+class ProductTest {
 
     @Test
-    public void shouldBeAbleToCreateAnItem(){
-        Item item = new Item();
+    public void shouldBeAbleToCreateAnProductWithName(){
+        Product product = new Product("Book");
 
-        Assertions.assertNotNull(item);
+        Assertions.assertEquals("Book",product.getName());
     }
 }
