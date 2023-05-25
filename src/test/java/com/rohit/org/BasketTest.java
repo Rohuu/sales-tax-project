@@ -17,7 +17,7 @@ public class BasketTest {
     @Test
     public void shouldBeAbleToAddBasketItem(){
         Basket basket=new Basket();
-        Product product = new Product("Book", Category.BOOK);
+        Product product = new Product("Book", Category.BOOK, true,BigDecimal.valueOf(10) );
         BasketItem basketItem = new BasketItem(product,1, BigDecimal.valueOf(50));
         basket.addBasketItem(basketItem);
 
@@ -28,11 +28,11 @@ public class BasketTest {
     public void shouldBeAbleToAddMultipleBasketItemWithUnitQuantity(){
         Basket basket=new Basket();
 
-        Product product1 = new Product("Book", Category.BOOK);
+        Product product1 = new Product("Book", Category.BOOK, true, BigDecimal.valueOf(10));
         BasketItem basketItem1 = new BasketItem(product1,1, BigDecimal.valueOf(50));
         basket.addBasketItem(basketItem1);
 
-        Product product2 = new Product("Chocolate", Category.FOOD);
+        Product product2 = new Product("Chocolate", Category.FOOD,true ,BigDecimal.valueOf(10) );
         BasketItem basketItem2 = new BasketItem(product2,1, BigDecimal.valueOf(30));
         basket.addBasketItem(basketItem2);
 
