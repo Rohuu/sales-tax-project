@@ -2,6 +2,8 @@ package com.rohit.org;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Basket {
@@ -13,5 +15,9 @@ public class Basket {
 
     public int size() {
         return basketItems.size();
+    }
+
+    public List<BasketItem> getBasketItems() {
+        return Collections.unmodifiableList(basketItems);
     }
 }
