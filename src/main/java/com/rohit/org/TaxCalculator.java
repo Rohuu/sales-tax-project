@@ -7,45 +7,78 @@ public class TaxCalculator {
     private BigDecimal importTaxPercentage=BigDecimal.valueOf(5);
     private BigDecimal basicSalesTaxPercentage=BigDecimal.valueOf(10);
 
+    public BigDecimal getTaxPerUnitProduct(Product product){
+        BigDecimal unitPrice = product.getUnitPrice();
+        BigDecimal importDuty = BigDecimal.ZERO;
+        BigDecimal basicSalesDuty = BigDecimal.ZERO;
 
-    public BigDecimal calculateAllTaxes(Product product,ReceiptItem receiptItem){
-        BigDecimal unitPrice=product.getUnitPrice();
-        int quantity=receiptItem.getQuantity();
-
-        BigDecimal importDuty=BigDecimal.ZERO;
-        BigDecimal basicSalesDuty=BigDecimal.ZERO;
-        BigDecimal priceIncludingTaxes = BigDecimal.ZERO;
-
-        boolean isImported=product.isImported();
-        boolean isExempted=false;
-        Category productCategory=product.getCategory();
-        if(productCategory.equals(Category.BOOK) ||
+        boolean isImported = product.isImported();
+        boolean isExempted = false;
+        Category productCategory = product.getCategory();
+        if (productCategory.equals(Category.BOOK) ||
                 productCategory.equals(Category.FOOD) ||
-                    productCategory.equals(Category.MEDICAL)){
-            isExempted=true;
+                productCategory.equals(Category.MEDICAL)) {
+            isExempted = true;
         }
+        return taxForBasketItem(isImported,isExempted,unitPrice);
+    }
 
+    private BigDecimal taxForBasketItem(boolean isImported, boolean isExempted, BigDecimal unitPrice) {
+        BigDecimal importDuty = BigDecimal.ZERO;
+        BigDecimal basicSalesDuty = BigDecimal.ZERO;
         if(isImported && isExempted) {
             importDuty = calculateTaxByTaxPercentage(unitPrice,importTaxPercentage);
-            BigDecimal roundOfTotalTax = calculateRoundValue(importDuty);
-            priceIncludingTaxes=unitPrice.add(roundOfTotalTax);
         }
         else if(!isImported && !isExempted) {
             basicSalesDuty=calculateTaxByTaxPercentage(unitPrice,basicSalesTaxPercentage);
-            BigDecimal roundOfTotalTax = calculateRoundValue(basicSalesDuty);
-            priceIncludingTaxes=unitPrice.add(roundOfTotalTax);
         }
         else if(!isImported && isExempted) {
-            priceIncludingTaxes = unitPrice;
+            return BigDecimal.ZERO;
         }
         else if (isImported && !isExempted) {
             importDuty = calculateTaxByTaxPercentage(unitPrice,importTaxPercentage);
             basicSalesDuty=calculateTaxByTaxPercentage(unitPrice,basicSalesTaxPercentage);
-            BigDecimal roundOfTotalTax= calculateRoundValue(importDuty.add(basicSalesDuty));
-            priceIncludingTaxes=unitPrice.add(roundOfTotalTax);
         }
-        return priceIncludingTaxes;
+        return importDuty.add(basicSalesDuty);
     }
+
+    //    public BigDecimal calculateAllTaxes(Product product){
+//        BigDecimal unitPrice=product.getUnitPrice();
+//
+//        BigDecimal importDuty=BigDecimal.ZERO;
+//        BigDecimal basicSalesDuty=BigDecimal.ZERO;
+//        BigDecimal priceIncludingTaxes = BigDecimal.ZERO;
+//
+//        boolean isImported=product.isImported();
+//        boolean isExempted=false;
+//        Category productCategory=product.getCategory();
+//        if(productCategory.equals(Category.BOOK) ||
+//                productCategory.equals(Category.FOOD) ||
+//                    productCategory.equals(Category.MEDICAL)){
+//            isExempted=true;
+//        }
+//
+//        if(isImported && isExempted) {
+//            importDuty = calculateTaxByTaxPercentage(unitPrice,importTaxPercentage);
+//            BigDecimal roundOfTotalTax = calculateRoundValue(importDuty);
+//            priceIncludingTaxes=unitPrice.add(roundOfTotalTax);
+//        }
+//        else if(!isImported && !isExempted) {
+//            basicSalesDuty=calculateTaxByTaxPercentage(unitPrice,basicSalesTaxPercentage);
+//            BigDecimal roundOfTotalTax = calculateRoundValue(basicSalesDuty);
+//            priceIncludingTaxes=unitPrice.add(roundOfTotalTax);
+//        }
+//        else if(!isImported && isExempted) {
+//            priceIncludingTaxes = unitPrice;
+//        }
+//        else if (isImported && !isExempted) {
+//            importDuty = calculateTaxByTaxPercentage(unitPrice,importTaxPercentage);
+//            basicSalesDuty=calculateTaxByTaxPercentage(unitPrice,basicSalesTaxPercentage);
+//            BigDecimal roundOfTotalTax= calculateRoundValue(importDuty.add(basicSalesDuty));
+//            priceIncludingTaxes=unitPrice.add(roundOfTotalTax);
+//        }
+//        return priceIncludingTaxes;
+//    }
     private BigDecimal calculateRoundValue(BigDecimal number) {
         BigDecimal decimalNumber = number;
         BigDecimal roundedNumber = decimalNumber.setScale(1, RoundingMode.HALF_UP);
