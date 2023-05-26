@@ -5,8 +5,8 @@ import java.util.Set;
 
 public class CategoryService {
 
-    Set<String> foods=Set.of("chocolate");
-    Set<String> medicines=Set.of("pills");
+    Set<String> foods=Set.of("chocolate","chocolate bar","box of chocolates");
+    Set<String> medicines=Set.of("packet of headache pills");
     Set<String> books=Set.of("book");
 
 
