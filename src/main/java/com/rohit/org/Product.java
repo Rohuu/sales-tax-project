@@ -25,7 +25,7 @@ public class Product {
     }
 
     public boolean isImported() {
-        return true;
+        return isImported;
     }
 
     public BigDecimal getUnitPrice() {
