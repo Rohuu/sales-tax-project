@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 public class Product {
     private final String name;
     private final Category category;
-    private boolean isImported;
-    private BigDecimal unitPrice;
+    private final boolean isImported;
+    private final BigDecimal unitPrice;
 
     public Product(String name, Category category, boolean isImported, BigDecimal unitPrice) {
         this.name = name;

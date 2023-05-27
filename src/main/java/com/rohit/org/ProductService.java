@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class ProductService {
 
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     public ProductService(CategoryService categoryService) {
         this.categoryService = categoryService;

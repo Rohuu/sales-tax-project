@@ -6,7 +6,7 @@ public class BasketItem {
     private final Product product;
     private final int quantity;
     private final BigDecimal price;
-    private BigDecimal tax;
+    private final BigDecimal tax;
 
     public BasketItem(Product product, int quantity, BigDecimal price, BigDecimal tax) {
         this.product = product;
