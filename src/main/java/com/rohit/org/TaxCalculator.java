@@ -1,16 +1,13 @@
 package com.rohit.org;
-import java.math.MathContext;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class TaxCalculator {
-    private BigDecimal importTaxPercentage=BigDecimal.valueOf(5);
-    private BigDecimal basicSalesTaxPercentage=BigDecimal.valueOf(10);
+    private final BigDecimal importTaxPercentage=BigDecimal.valueOf(5);
+    private final BigDecimal basicSalesTaxPercentage=BigDecimal.valueOf(10);
 
     public BigDecimal getTaxPerUnitProduct(Product product){
         BigDecimal unitPrice = product.getUnitPrice();
-        BigDecimal importDuty = BigDecimal.ZERO;
-        BigDecimal basicSalesDuty = BigDecimal.ZERO;
 
         boolean isImported = product.isImported();
         boolean isExempted = false;
@@ -21,8 +18,7 @@ public class TaxCalculator {
             isExempted = true;
         }
         BigDecimal nonRoundOffTax= taxForBasketItem(isImported,isExempted,unitPrice);
-        BigDecimal roundOffTax= calculateRoundOffValue(nonRoundOffTax);
-        return roundOffTax;
+        return calculateRoundOffValue(nonRoundOffTax);
     }
 
     private BigDecimal taxForBasketItem(boolean isImported, boolean isExempted, BigDecimal unitPrice) {
@@ -44,17 +40,9 @@ public class TaxCalculator {
         return importDuty.add(basicSalesDuty);
     }
 
-    private BigDecimal calculateRoundOffValue(BigDecimal number) {
-        BigDecimal decimalNumber = number;
-        BigDecimal roundedNumber = decimalNumber.setScale(1, RoundingMode.HALF_UP);
-        BigDecimal remainder = roundedNumber.remainder(new BigDecimal("0.05"));
-
-        if (remainder.compareTo(new BigDecimal("0.025")) >= 0) {
-            roundedNumber = roundedNumber.add(new BigDecimal("0.05").subtract(remainder));
-        } else {
-            roundedNumber = roundedNumber.subtract(remainder);
-        }
-
+    private BigDecimal calculateRoundOffValue(BigDecimal decimalNumber) {
+        BigDecimal roundedNumber = decimalNumber.divide(new BigDecimal("0.05"), 0, RoundingMode.UP)
+                .multiply(new BigDecimal("0.05"));
         return roundedNumber;
     }
 
