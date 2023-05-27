@@ -34,6 +34,7 @@ public class SalesTaxApplication {
             basket.addBasketItem(basketItem);
         }
         ReceiptPrinter receiptPrinter=new ReceiptPrinter();
-        receiptPrinter.printReceipt(basket);
+        String totalBilling = receiptPrinter.generateReceipt(basket);
+        System.out.println(totalBilling);
     }
 }
