@@ -19,7 +19,9 @@ public class ReceiptItemParserTest {
         ReceiptItemParser receiptItemParser=new ReceiptItemParser();
         ReceiptItem receiptItem = receiptItemParser.parseInput("1 imported box of chocolates at 10.00");
 
-        Assertions.assertEquals(new ReceiptItem("box of chocolates",true,1, BigDecimal.valueOf(10.00)),receiptItem);
-
+        Assertions.assertEquals(1,receiptItem.getQuantity());
+        Assertions.assertTrue(receiptItem.isImported());
+        Assertions.assertEquals("box of chocolates",receiptItem.getProductName());
+        Assertions.assertEquals("10.00",receiptItem.getUnitPrice().toString());
     }
 }
