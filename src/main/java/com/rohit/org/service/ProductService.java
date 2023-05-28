@@ -1,4 +1,6 @@
-package com.rohit.org;
+package com.rohit.org.service;
+
+import com.rohit.org.model.Product;
 
 import java.math.BigDecimal;
 

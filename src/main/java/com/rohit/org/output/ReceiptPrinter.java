@@ -1,4 +1,8 @@
-package com.rohit.org;
+package com.rohit.org.output;
+
+import com.rohit.org.model.BasketItem;
+import com.rohit.org.model.Basket;
+import com.rohit.org.model.Product;
 
 import java.math.BigDecimal;
 import java.util.List;

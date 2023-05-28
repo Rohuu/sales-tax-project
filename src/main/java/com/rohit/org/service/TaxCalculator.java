@@ -1,4 +1,7 @@
-package com.rohit.org;
+package com.rohit.org.service;
+import com.rohit.org.model.Category;
+import com.rohit.org.model.Product;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

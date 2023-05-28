@@ -1,5 +1,9 @@
 package com.rohit.org;
 
+import com.rohit.org.model.Category;
+import com.rohit.org.model.Product;
+import com.rohit.org.service.CategoryService;
+import com.rohit.org.service.ProductService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,5 @@
-package com.rohit.org;
+package com.rohit.org.model;
+
 
 import java.math.BigDecimal;
 

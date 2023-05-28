@@ -1,4 +1,6 @@
-package com.rohit.org;
+package com.rohit.org.input;
+
+import com.rohit.org.model.ReceiptItem;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

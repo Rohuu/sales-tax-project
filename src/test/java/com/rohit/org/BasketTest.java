@@ -1,5 +1,9 @@
 package com.rohit.org;
 
+import com.rohit.org.model.Basket;
+import com.rohit.org.model.BasketItem;
+import com.rohit.org.model.Category;
+import com.rohit.org.model.Product;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

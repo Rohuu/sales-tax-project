@@ -1,5 +1,10 @@
 package com.rohit.org;
 
+import com.rohit.org.model.Basket;
+import com.rohit.org.model.BasketItem;
+import com.rohit.org.model.Category;
+import com.rohit.org.model.Product;
+import com.rohit.org.output.ReceiptPrinter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +23,7 @@ public class ReceiptPrinterTest {
         ReceiptPrinter receiptPrinter=new ReceiptPrinter();
         Basket basket=new Basket();
 
-        Product product=new Product("book",Category.BOOK,false, BigDecimal.valueOf(100));
+        Product product=new Product("book", Category.BOOK,false, BigDecimal.valueOf(100));
         basket.addBasketItem(new BasketItem(product,1,BigDecimal.valueOf(100),BigDecimal.ZERO));
         String expected= """
                 1 book: 100

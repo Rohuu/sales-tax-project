@@ -1,9 +1,9 @@
 package com.rohit.org;
 
+import com.rohit.org.input.ReceiptItemParser;
+import com.rohit.org.model.ReceiptItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
 
 public class ReceiptItemParserTest {
 
