@@ -25,6 +25,15 @@ public class SalesTaxApplication {
 
 
         //Input
+        inputFromUser(basket, productService, receiptItemParser, taxCalculator);
+
+        //Output
+        ReceiptPrinter receiptPrinter=new ReceiptPrinter();
+        String totalBilling = receiptPrinter.generateReceipt(basket);
+        System.out.println(totalBilling);
+    }
+
+    private static void inputFromUser(Basket basket, ProductService productService, ReceiptItemParser receiptItemParser, TaxCalculator taxCalculator) throws IOException {
         System.out.println("Enter your input: ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line;
@@ -43,8 +52,5 @@ public class SalesTaxApplication {
             );
             basket.addBasketItem(basketItem);
         }
-        ReceiptPrinter receiptPrinter=new ReceiptPrinter();
-        String totalBilling = receiptPrinter.generateReceipt(basket);
-        System.out.println(totalBilling);
     }
 }
