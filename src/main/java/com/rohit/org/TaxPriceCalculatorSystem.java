@@ -7,7 +7,6 @@ import com.rohit.org.model.Product;
 import com.rohit.org.model.ReceiptItem;
 import com.rohit.org.output.ReceiptPrinter;
 import com.rohit.org.service.CategoryService;
-import com.rohit.org.service.ProductService;
 import com.rohit.org.service.TaxCalculator;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.List;
 public class TaxPriceCalculatorSystem {
     Basket basket = new Basket();
     CategoryService categoryService = new CategoryService();
-    ProductService productService = new ProductService(categoryService);
     ReceiptItemParser receiptItemParser = new ReceiptItemParser();
     TaxCalculator taxCalculator = new TaxCalculator();
     ReceiptPrinter receiptPrinter=new ReceiptPrinter();
