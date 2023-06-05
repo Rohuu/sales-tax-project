@@ -31,13 +31,4 @@ public class ReceiptItem {
         return unitPrice;
     }
 
-    @Override
-    public String toString() {
-        return "ReceiptItem{" +
-                "productName='" + productName + '\'' +
-                ", isImported=" + isImported +
-                ", quantity=" + quantity +
-                ", unitPrice=" + unitPrice +
-                '}';
-    }
 }
